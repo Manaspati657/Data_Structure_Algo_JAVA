@@ -1,4 +1,4 @@
-package Code.src.com.mkp.pattern;
+package src.com.mkp.pattern;
 
 public class Pattern {
     public static void main(String[] args) {
