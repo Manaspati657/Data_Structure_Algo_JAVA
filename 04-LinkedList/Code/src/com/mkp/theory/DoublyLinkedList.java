@@ -4,7 +4,7 @@ import java.util.StringJoiner;
 
 public class DoublyLinkedList<T> {
 
-    private Node first;
+    private Node head;
     private Integer size;
 
     public DoublyLinkedList() {
@@ -14,7 +14,7 @@ public class DoublyLinkedList<T> {
     public int size(){return size;}
 
     private Node getNodeByIndex(int index){
-        Node temp =first;
+        Node temp =head;
         int i=0;
         while (temp != null){
             if(i == index) return temp;
@@ -25,7 +25,7 @@ public class DoublyLinkedList<T> {
     }
 
     private Node findNode(T item){
-        Node temp =first;
+        Node temp =head;
         while (temp != null){
             if(temp.item == item) return temp;
             temp=temp.next;
@@ -36,9 +36,9 @@ public class DoublyLinkedList<T> {
 
     public T deleteFirst(){
         if(isEmpty()) return null;
-        T item =first.item;
-        first=first.next;
-        first.prev=null;
+        T item =head.item;
+        head=head.next;
+        head.prev=null;
         size--;
         return item;
     }
@@ -76,9 +76,9 @@ public class DoublyLinkedList<T> {
     // Time complexity:: O(1)
     public void insertFirst(T item){
         Node node =new Node(item);
-        if(!isEmpty()) first.prev=node;
-        node.next=first;
-        first=node;
+        if(!isEmpty()) head.prev=node;
+        node.next=head;
+        head=node;
         size++;
     }
 
@@ -142,9 +142,7 @@ public class DoublyLinkedList<T> {
     @Override
     public String toString() {
         StringJoiner list=new StringJoiner(", ","[","]");
-        if(isEmpty()) return list.toString();
-
-        Node temp=first;
+        Node temp=head;
         while(temp != null){
             list.add(temp.item.toString());
             temp=temp.next;

@@ -49,20 +49,13 @@ public class Main {
         System.out.println("In Reverse order :: \n"+list.displayReverse());*/
 
         CircularLinkedList<Integer> list=new CircularLinkedList<>();
-        list.insertFirst(7);
-//        list.insertFirst(9);
-//        list.insertFirst(3);
-//        list.insertFirst(6);
-//        list.insertLast(5);
-//        list.insertAtIndex(10,3);
-//        list.insertAfterItem(8,7);
+        list.insert(7);
+        list.insert(9);
+//        list.insert(3);
+//        list.insert(6);
         System.out.println(list);
-//        System.out.println(list.deleteFirst());
-//        System.out.println(list);
-//        System.out.println(list.deleteLast());
-//        System.out.println(list);
-//        System.out.println(list.delete(2));
-//        System.out.println(list);
+        System.out.println("delete :: "+ list.delete(9));
+        System.out.println(list);
         System.out.println("size :: "+list.size());
     }
 }

@@ -4,8 +4,8 @@ import java.util.StringJoiner;
 
 public class SinglyLinkedList<T> {
 
-    private Node first;
-    private Node last;
+    private Node head;
+    private Node tail;
 
     private Integer size;
 
@@ -15,7 +15,7 @@ public class SinglyLinkedList<T> {
 
     public boolean isEmpty(){return size == 0;}
     private Node getNodeByIndex(int index){
-        Node temp=first;
+        Node temp=head;
         int i =0;
         while(temp != null){
             if(i== index) return temp;
@@ -27,18 +27,18 @@ public class SinglyLinkedList<T> {
 
     public T deleteFirst(){
         if(isEmpty()) return null;
-        T item=first.value;
-        first=first.next;
+        T item=head.value;
+        head=head.next;
         size--;
         return item;
     }
     public T deleteLast(){
         if (size==1) return deleteFirst();
-        T item=last.value;
+        T item=tail.value;
         Node lastPrev=getNodeByIndex(size-2);
         if(lastPrev != null){
             lastPrev.next=null;
-            last=lastPrev;
+            tail=lastPrev;
         }
         size--;
         return item;
@@ -75,9 +75,9 @@ public class SinglyLinkedList<T> {
 // Time complexity:: O(1)
     public void insertFirst(T item){
         Node node =new Node(item);
-        node.next=first;
-        first=node;
-        if(isEmpty()) last=first;
+        node.next=head;
+        head=node;
+        if(isEmpty()) tail=head;
         size++;
     }
 
@@ -94,8 +94,8 @@ public class SinglyLinkedList<T> {
             return;
         }
         Node node =new Node(item);
-        last.next=node;
-        last=node;
+        tail.next=node;
+        tail=node;
         size++;
     }
 
@@ -106,15 +106,27 @@ public class SinglyLinkedList<T> {
     @Override
     public String toString() {
         StringJoiner list=new StringJoiner(", ","[","]");
-        if(isEmpty()) return list.toString();
-
-        Node temp=first;
+        Node temp=head;
         while (temp !=null ){
             list.add((temp.value).toString());
             temp=temp.next;
         }
 
         return list.toString();
+    }
+
+    public void removeDuplicates() {
+        if(head != null){
+            Node temp=head;
+            while(temp.next != null){
+                if(temp.value==temp.next.value){
+                    temp.next=temp.next.next;
+                    size--;
+                }else{
+                    temp=temp.next;
+                }
+            }
+        }
     }
 
     private class Node{
