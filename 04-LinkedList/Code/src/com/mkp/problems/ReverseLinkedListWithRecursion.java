@@ -2,42 +2,49 @@ package src.com.mkp.problems;
 
 import java.util.StringJoiner;
 
-public class MiddleOfTheLinkedList876 {
-
-//    https://leetcode.com/problems/middle-of-the-linked-list/description/
+public class ReverseLinkedListWithRecursion {
 
     public static void main(String[] args) {
-        MiddleOfTheLinkedList876 list=new MiddleOfTheLinkedList876();
+        ReverseLinkedListWithRecursion list=new ReverseLinkedListWithRecursion();
         list.insertLast(9);
         list.insertLast(2);
         list.insertLast(6);
         list.insertLast(4);
         list.insertLast(1);
-//        list.insertLast(8);
         System.out.println(list);
-        System.out.println("middle ::"+middle(list));
+        System.out.println("After reverse :: ");
+        list.reverse();
+        System.out.println(list);
     }
 
+    public static void reverse(){
+        reverse(head);
+    }
 
-    public static int middle(MiddleOfTheLinkedList876 list){
-        Node s=list.head;
-        Node f=list.head;
-
-        while(f != null && f.next != null ){
-            s=s.next;
-            f=f.next.next;
+//    reverse with and firsta and last node
+    public static void reverse(Node node){
+        if(node.next == null){
+            head=node;
+            return;
         }
+        reverse(node.next);
+        tail.next=node;
+        tail=node;
+        tail.next=null;
+    }
 
-        return s.value;
+//    reverse without tail only with head gfg
+    public static void reverse2(){
+        reverse(head);
     }
 
 
-    private Node head;
-    private Node tail;
+    private static Node head;
+    private static Node tail;
 
     private Integer size;
 
-    public MiddleOfTheLinkedList876() {
+    public ReverseLinkedListWithRecursion() {
         this.size = 0;
     }
 
