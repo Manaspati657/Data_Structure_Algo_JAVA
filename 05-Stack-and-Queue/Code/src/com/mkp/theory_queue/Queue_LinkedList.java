@@ -10,7 +10,7 @@ public class Queue_LinkedList<T> {
     private Node head,tail;
     private Integer size;
 
-    Queue_LinkedList(){
+    public Queue_LinkedList(){
         size=0;
     }
     public boolean isEmpty(){ return head == null;}
