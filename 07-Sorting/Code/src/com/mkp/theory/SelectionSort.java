@@ -2,6 +2,8 @@ package src.com.mkp.theory;
 
 public class SelectionSort  {
 
+    //    Time and Space Complexity:
+
     /*
     *   How it works::  get the min element in the entire array and swap it to the first element
     *   this process continue .
@@ -16,7 +18,6 @@ public class SelectionSort  {
     *   Space Complexity: O(1), as no extra space is required for the Selection sort algorithm
     *
     * */
-
 
 //    [  13, 2, 20, 10, 4, 15, 6, 18, 7, 3]
     public static void sort(Comparable[] arr){
