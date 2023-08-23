@@ -1,4 +1,4 @@
-package src.com.mkp.theory;
+package src.com.mkp.binary_search;
 
 import java.util.Arrays;
 
