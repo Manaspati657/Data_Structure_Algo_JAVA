@@ -1,6 +1,7 @@
 package src.com.mkp.binary_search;
 
 public class OrderAgnosticBS {
+    //    The time complexity of binary search O(log n).
     // Not mentioned the array is sorted in ascending or descending
     public static void main(String[] args) {
 //        int[] arr = {-18, -12, -4, 0, 2, 3, 4, 15, 16, 18, 22, 45, 89};

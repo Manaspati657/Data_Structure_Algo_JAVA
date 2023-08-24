@@ -3,7 +3,8 @@ package src.com.mkp.binary_search;
 import java.util.Arrays;
 
 public class BinarySearch {
-
+//    https://www.scaler.com/topics/time-complexity-of-binary-search/
+//    The time complexity of binary search O(log n).
     public static void main(String[] args) {
         Integer[] arr={ 2, 3, 4, 6, 7, 10, 13, 15, 18, 20};
         System.out.println(Arrays.toString(arr));

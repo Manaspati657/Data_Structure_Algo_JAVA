@@ -1,6 +1,7 @@
 package src.com.mkp.linear_search;
 
 public class EvenNumberOfDigits1295 {
+    //    The time complexity of linear search O(n).
     public static void main(String[] args) {
         int[] nums = {555,901,-482,-1771};
         System.out.println(findNumbers(nums));

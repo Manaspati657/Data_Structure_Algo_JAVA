@@ -1,7 +1,7 @@
 package src.com.mkp.linear_search;
 
 public class RichestCustomerWealth1672 {
-
+    //    The time complexity of linear search O(n).
     public static void main(String[] args) {
 //        int[][] arr={{1,2,3},{3,2,1}};
         int[][] arr={{1,5},{7,3},{3,5}};

@@ -3,6 +3,7 @@ package src.com.mkp.linear_search;
 import java.util.Arrays;
 
 public class SearchInStrings {
+    //    The time complexity of linear search O(n).
     public static void main(String[] args) {
         String name = "Manas";
         char target = 's';
