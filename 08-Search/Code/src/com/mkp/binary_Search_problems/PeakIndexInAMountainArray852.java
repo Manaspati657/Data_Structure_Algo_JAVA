@@ -4,7 +4,8 @@ public class PeakIndexInAMountainArray852 {
     //    https://leetcode.com/problems/peak-index-in-a-mountain-array/
 //    https://leetcode.com/problems/find-peak-element/description/
     public static void main(String[] args) {
-        int[] arr = {1,2,1,3,5,6,4};
+//        int[] arr = {1,2,1,3,5,6,4};
+        int[] arr = {0,2,4,8,3,2};
         System.out.println(findPeakElement(arr));
     }
     public static int findPeakElement(int[] arr) {
