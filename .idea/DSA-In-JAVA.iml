@@ -13,6 +13,8 @@
       <sourceFolder url="file://$MODULE_DIR$/07-Sorting/Code" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/06-Recursion/Code" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/08-Search/Code" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/09-Priority-Queue/Code" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/10-Binary-Search-Tree/Code" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/02-Patterns/Code/src/patternEx" />
     </content>
     <orderEntry type="inheritedJdk" />
