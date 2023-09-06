@@ -10,12 +10,12 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
 
     Node root;
 
-    public Integer height(){
-        return height(root);
+    public Integer size(){
+        return size(root);
     }
 
-    private Integer height(Node root) {
-        return root != null ? root.hight : 0 ;
+    private Integer size(Node root) {
+        return root != null && root.count != null ? root.count : 0 ;
     }
 
     public boolean isRed(Node temp){
@@ -29,6 +29,7 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
         temp.left=h;
         temp.color=h.color;
         h.color=RED;
+        setHeightNdSize(h,temp);
         return temp;
     }
 
@@ -39,8 +40,17 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
         temp.right=h;
         temp.color=h.color;
         h.color=RED;
+        setHeightNdSize(h,temp);
         return temp;
     }
+
+    private void setHeightNdSize(Node h,Node temp){
+        temp.count=1+size(temp.left)+size(temp.right);
+        h.count=1+size(h.left)+size(h.right);
+        temp.height=1+Math.max(height(temp.left),height(temp.right));
+        h.height=1+Math.max(height(h.left),height(h.right));
+    }
+
 
     private void flipColor(Node h){
         if(!isRed(h.left) || !isRed(h.right)) return ;
@@ -54,7 +64,11 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
     }
 
     private Node insert(Node tempRoot, Key key, Value value) {
-        if(tempRoot==null) return new Node(key,value,RED);
+        if(tempRoot==null) {
+            Node newNode=new Node(key,value,RED);
+            newNode.count=1;
+            return newNode;
+        }
         int comp=key.compareTo(tempRoot.key);
         if(comp > 0 ) tempRoot.right=insert(tempRoot.right,key,value);
         else if(comp < 0 ) tempRoot.left=insert(tempRoot.left,key,value);
@@ -63,10 +77,22 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
         if(!isRed(tempRoot.left) && isRed(tempRoot.right)) tempRoot=rotateLeft(tempRoot);
         if(isRed(tempRoot.left) && isRed(tempRoot.left.left)) tempRoot=rotateRight(tempRoot);
         if(isRed(tempRoot.left) && isRed(tempRoot.right)) flipColor(tempRoot);
-
-        tempRoot.hight=1+height(tempRoot.left)+height(tempRoot.right);
+        tempRoot.count=1+size(tempRoot.left)+size(tempRoot.right);
+        tempRoot.height=1+Math.max(height(tempRoot.left),height(tempRoot.right));
 
         return tempRoot;
+    }
+
+    public int height() {
+        return height(root);
+    }
+
+
+    private Integer height(Node temp) {
+        if (temp != null && temp.height == null) {
+            return -1;
+        }
+        return temp != null ? temp.height : -1;
     }
 
     public void display(){
@@ -86,8 +112,8 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
 
     private Boolean isBalanced(Node tempRoot) {
         if(tempRoot == null) return true;
-        int heightDiff=height(tempRoot.left)-height(tempRoot.right);
-        return (heightDiff >= -1 && heightDiff <= 1) && isBalanced(tempRoot.left) && isBalanced(tempRoot.right);
+        int sizeDiff=height(tempRoot.left)-height(tempRoot.right);
+        return (sizeDiff >= -1 && sizeDiff <= 1) && isBalanced(tempRoot.left) && isBalanced(tempRoot.right);
     }
 
     public Value getValue(Key key) {
@@ -165,25 +191,19 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
         inorder(root.right,q);
     }
 
-    public void deleteMin() {
-        deleteMin(root);
-    }
-
-    private void deleteMin(Node tempRoot) {
-    }
-
-
     private class Node{
-        Key key;
-        Value value;
-        Node left,right;
-        Boolean color;
-        Integer hight;
+        private Key key;
+        private Value value;
+        private Node left,right;
+        private Boolean color;
+        private Integer count;
+        private Integer height;
+
         public Node(Key key,Value value,Boolean color) {
             this.key = key;
             this.value=value;
             this.color=color;
-            this.hight=0;
+            this.count=1;
         }
     }
 }

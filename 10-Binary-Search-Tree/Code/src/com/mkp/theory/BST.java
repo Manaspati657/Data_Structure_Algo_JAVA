@@ -7,13 +7,13 @@ public class BST <Key extends Comparable<Key>, Value>{
 
     private Node root;
 
-    public Integer height(){
-        return height(root);
+    public Integer size(){
+        return size(root);
     }
 
-    private Integer height(Node r) {
+    private Integer size(Node r) {
         if( r == null) return 0;
-        return (r.hight == null ) ? 0 : r.hight;
+        return (r.count == null ) ? 0 : r.count;
     }
     public Key min(){
         Node t=min(root);
@@ -52,7 +52,7 @@ public class BST <Key extends Comparable<Key>, Value>{
         if(cmp < 0) rootTemp.left = insert(rootTemp.left,key,value);
         else if(cmp > 0) rootTemp.right = insert(rootTemp.right,key,value);
         else if(cmp == 0) rootTemp.value=value;
-        rootTemp.hight= 1 + height(rootTemp.left)+ height(rootTemp.right);
+        rootTemp.count= 1 + size(rootTemp.left)+ size(rootTemp.right);
         return rootTemp;
     }
 
@@ -119,7 +119,7 @@ public class BST <Key extends Comparable<Key>, Value>{
     {
         if (x.left == null) return x.right;
         x.left = deleteMin(x.left);
-        x.hight = 1 + height(x.left) + height(x.right);
+        x.count = 1 + size(x.left) + size(x.right);
         return x;
     }
 
@@ -141,7 +141,7 @@ public class BST <Key extends Comparable<Key>, Value>{
             tempRoot.right=deleteMin(temp.right);
             tempRoot.left=temp.left;
         }
-        tempRoot.hight=1+height(tempRoot.left)+height(tempRoot.right);
+        tempRoot.count=1+size(tempRoot.left)+size(tempRoot.right);
         return tempRoot;
     }
 
@@ -162,8 +162,8 @@ public class BST <Key extends Comparable<Key>, Value>{
 
     private Boolean isBalanced(Node tempRoot) {
         if(tempRoot == null) return true;
-        int heightDiff=height(tempRoot.left)-height(tempRoot.right);
-        return (heightDiff >= -1 && heightDiff <= 1) && isBalanced(tempRoot.left) && isBalanced(tempRoot.right);
+        int sizeDiff=size(tempRoot.left)-size(tempRoot.right);
+        return (sizeDiff >= -1 && sizeDiff <= 1) && isBalanced(tempRoot.left) && isBalanced(tempRoot.right);
     }
 
     private class Node{
@@ -171,11 +171,12 @@ public class BST <Key extends Comparable<Key>, Value>{
         Value value;
         Node left,right;
 
-        Integer hight;
+        Integer count;
 
         public Node(Key key,Value value) {
             this.key = key;
             this.value=value;
+            this.count=1;
         }
     }
 
