@@ -134,16 +134,16 @@ public class AVL_kunal {
     }
 
     public void display() {
-        display(this.root, "Root Node: ");
+        preOrder(this.root, "Root Node: ");
     }
 
-    private void display(Node node, String details) {
+    private void preOrder(Node node, String details) {
         if (node == null) {
             return;
         }
         System.out.println(details + node.value+" height: "+node.height);
-        display(node.left, "Left child of " + node.value + " : ");
-        display(node.right, "Right child of " + node.value + " : ");
+        preOrder(node.left, "Left child of " + node.value + " : ");
+        preOrder(node.right, "Right child of " + node.value + " : ");
     }
 
     public boolean isEmpty() {

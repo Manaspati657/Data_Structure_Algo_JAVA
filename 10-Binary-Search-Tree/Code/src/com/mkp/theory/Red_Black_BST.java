@@ -96,14 +96,14 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
     }
 
     public void display(){
-        display(root ,"root node key: ");
+        preOrder(root ,"root node key: ");
     }
 
-    private void display(Node root,String msg) {
+    private void preOrder(Node root,String msg) {
         if(root == null) return;
         System.out.println(msg+root.key);
-        display(root.left,root.key+" key left node key: ");
-        display(root.right,root.key+" key right node key: ");
+        preOrder(root.left,root.key+" key left node key: ");
+        preOrder(root.right,root.key+" key right node key: ");
     }
 
     public Boolean isBalanced() {

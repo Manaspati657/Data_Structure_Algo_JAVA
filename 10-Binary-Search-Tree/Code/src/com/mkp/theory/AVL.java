@@ -169,14 +169,14 @@ class AVL<Key extends Comparable<Key>>{
     }
 
     public void display(){
-        inorder(root,"root node: ");
+        preOrder(root,"root node: ");
     }
 
-    private void inorder(Node node,String msg) {
+    private void preOrder(Node node,String msg) {
         if(node == null) return;
         System.out.println(msg+node.key+" height: "+node.height+" count: "+node.count);
-        inorder(node.left,node.key+" left node is : ");
-        inorder(node.right,node.key+" right node is : ");
+        preOrder(node.left,node.key+" left node is : ");
+        preOrder(node.right,node.key+" right node is : ");
     }
 
     public Boolean isBalanced(){
