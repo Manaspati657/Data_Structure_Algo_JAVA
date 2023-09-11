@@ -16,10 +16,16 @@ public class BST <Key extends Comparable<Key>, Value>{
         return (r.count == null ) ? 0 : r.count;
     }
     public Key min(){
-        Node t=min(root);
-        return t ==null? null:t.key;
+//        Node t=min(root);
+////        return t ==null? null:t.key;
+        return getMin(root);
     }
 
+    private Key getMin(Node node) {
+        if(node == null) return null;
+        if(node.left != null) return getMin(node.left);
+        return node.key;
+    }
 
     public Node min(Node temp){
         while(temp != null){
@@ -28,12 +34,10 @@ public class BST <Key extends Comparable<Key>, Value>{
         }
         return temp;
     }
-
     public Key max(){
         Node t = max(root);
         return t==null ? null : t.key;
     }
-
     public Node max(Node temp){
             while(temp != null){
                 temp = temp.right;

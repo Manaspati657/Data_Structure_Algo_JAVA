@@ -1,164 +1,243 @@
 package src.com.mkp.theory;
 
-class AVL {
-
-    public class Node {
-        private int value;
-        private Node left;
-        private Node right;
-        private int height;
-
-        public Node(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
-
+class AVL<Key extends Comparable<Key>>{
     private Node root;
-
     public AVL() {
-
+    }
+    public AVL(Key[] arr) {
+        insertArray(arr);
+    }
+    private void insertArray(Key[] arr) {
+        for (Key e:arr){
+            insert(e);
+        }
+    }
+    public void insert(Key key) {
+        this.root=insert(root,key);
     }
 
-    public int height() {
+    public Integer height(){
         return height(root);
     }
     private int height(Node node) {
-        if (node == null) {
-            return -1;
-        }
+        if(node == null) return -1;
         return node.height;
     }
 
-    public void insert(int value) {
-        root = insert(value, root);
+    public Integer count(){
+        return count(root);
+    }
+    private int count(Node node) {
+        if(node==null) return 0;
+        return node.count;
     }
 
-    private Node insert(int value, Node node) {
-        if (node == null) {
-            node = new Node(value);
-            return node;
-        }
+    private Node rotateRight(Node node){
+        Node temp=node.left;
+        Node t2=temp.right;
 
-        if (value < node.value) {
-            node.left = insert(value, node.left);
-        }
+        temp.right=node;
+        node.left=t2;
 
-        if (value > node.value) {
-            node.right = insert(value, node.right);
-        }
+        setHeightNdCount(node);
+        setHeightNdCount(temp);
 
-        node.height = Math.max(height(node.left), height(node.right)) + 1;
-        return rotate(node);
+        return temp;
     }
 
-    private Node rotate(Node node) {
-        if (height(node.left) - height(node.right) > 1) {
-            // left heavy
-            if(height(node.left.left) - height(node.left.right) > 0) {
-                // left left case
-                return rightRotate(node);
+    private Node rotateLeft(Node node){
+        Node temp=node.right;
+        Node t2=temp.left;
+
+        temp.left=node;
+        node.right=t2;
+
+        setHeightNdCount(node);
+        setHeightNdCount(temp);
+
+        return temp;
+    }
+
+    private Node insert(Node node, Key key) {
+        if(node == null) return new Node(key);
+        int comp=key.compareTo(node.key);
+        if(comp > 0) node.right=insert(node.right,key);
+        else if(comp < 0) node.left=insert(node.left,key);
+        setHeightNdCount(node);
+//        this checkIsBalanced used key for child node comparison
+        return checkIsBalanced(node,key);
+//        this checkIsBalanced don't use anything for child node comparison
+//        return checkIsBalanced(node);
+    }
+
+    private Node checkIsBalanced(Node node) {
+        //        if the height difference greater than then the new node is added on the left side.
+//        left case L :
+        if((height(node.left) - height(node.right)) > 1){
+//            check for LL case or LR case
+
+//            if node left side weight is high then the case is LL
+//            case LL :
+            if(height(node.left) >= 0){
+                node=rotateRight(node);
             }
-            if(height(node.left.left) - height(node.left.right) < 0) {
-                // left right case
-                node.left = leftRotate(node.left);
-                return rightRotate(node);
+
+//            if node left side weight is less than 0 then node.left.right weight is high in
+//            that condition case is LR
+//            case LR :  => L + RR of node.left => LL => right rotate current node
+            else if(height(node.left) < 0){
+                node.left=rotateLeft(node.left);
+                node=rotateRight(node);
             }
+
         }
 
-        if (height(node.left) - height(node.right) < -1) {
-            // right heavy
-            if(height(node.right.left) - height(node.right.right) < 0) {
-                // right right case
-                return leftRotate(node);
+//        if the height difference less than -1 then the new node is added on the right side.
+//        Right case R :
+        if((height(node.left) - height(node.right)) < -1){
+//            check for RR case or RL case
+
+//            if node right side weight is less than equal 0  then the case is RR.
+//            case RR :
+            if(height(node.right) <= 0 ){
+                node=rotateLeft(node);
             }
-            if(height(node.right.left) - height(node.right.right) > 0) {
-                // left right case
-                node.right = rightRotate(node.right);
-                return leftRotate(node);
+
+//            if node right side weight is greater than 0, then the node.right.left weight is
+//            high so the case is RL.
+//            case RL :  => R + LL of node.right => RR => Left rotate current node
+            else if(height(node.right) > 0){
+                node.right=rotateRight(node.right);
+                node=rotateLeft(node);
             }
         }
 
         return node;
+
     }
 
-    public Node rightRotate(Node p) {
-        Node c = p.left;
-        Node t = c.right;
+    private Node checkIsBalanced(Node node,Key key) {
+//        if the height difference greater than then the new node is added on the left side.
+//        left case L :
+        if((height(node.left) - height(node.right)) > 1){
+//            check for LL case or LR case
+            int comp=key.compareTo(node.left.key);
 
-        c.right = p;
-        p.left = t;
+//            if new node is less than node.left then that node added on the left side.
+//            case LL :
+            if(comp < 0){
+                node=rotateRight(node);
+            }
 
-        p.height = Math.max(height(p.left), height(p.right) + 1);
-        c.height = Math.max(height(c.left), height(c.right) + 1);
+//            if new node is greater than node.left then that node added on the right side.
+//            case LR :  => L + RR of node.left => LL => right rotate current node
+            else if(comp > 0){
+                node.left=rotateLeft(node.left);
+                node=rotateRight(node);
+            }
 
-        return c;
-    }
-
-    public Node leftRotate(Node c) {
-        Node p = c.right;
-        Node t = p.left;
-
-        p.left = c;
-        c.right = t;
-
-        p.height = Math.max(height(p.left), height(p.right) + 1);
-        c.height = Math.max(height(c.left), height(c.right) + 1);
-
-        return p;
-    }
-
-    public void populate(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-            this.insert(nums[i]);
-        }
-    }
-
-    public void populatedSorted(int[] nums) {
-        populatedSorted(nums, 0, nums.length);
-    }
-
-    private void populatedSorted(int[] nums, int start, int end) {
-        if (start >= end) {
-            return;
         }
 
-        int mid = (start + end) / 2;
+//        if the height difference less than -1 then the new node is added on the right side.
+//        Right case R :
+        if((height(node.left) - height(node.right)) < -1){
+//            check for RR case or RL case
+            int comp=key.compareTo(node.right.key);
 
-        this.insert(nums[mid]);
-        populatedSorted(nums, start, mid);
-        populatedSorted(nums, mid + 1, end);
-    }
+//            if new node is greater than node.right then that node added on the right side.
+//            case RR :
+            if(comp > 0){
+                node=rotateLeft(node);
+            }
 
-    public void display() {
-        display(this.root, "Root Node: ");
-    }
-
-    private void display(Node node, String details) {
-        if (node == null) {
-            return;
+//            if new node is less than node.right then that node added on the left side.
+//            case RL :  => R + LL of node.right => RR => Left rotate current node
+            else if(comp < 0){
+                node.right=rotateRight(node.right);
+                node=rotateLeft(node);
+            }
         }
-        System.out.println(details + node.value);
-        display(node.left, "Left child of " + node.value + " : ");
-        display(node.right, "Right child of " + node.value + " : ");
+
+        return node;
+
     }
 
-    public boolean isEmpty() {
-        return root == null;
+    private void setHeightNdCount(Node node) {
+        node.height=1+Math.max(height(node.left),height(node.right));
+//        node.height = Math.max(height(node.left), height(node.right) + 1);
+        node.count=1+count(node.left)+count(node.right);
     }
 
-    public boolean balanced() {
-        return balanced(root);
+    public void display(){
+        inorder(root,"root node: ");
     }
 
-    private boolean balanced(Node node) {
-        if (node == null) {
-            return true;
+    private void inorder(Node node,String msg) {
+        if(node == null) return;
+        System.out.println(msg+node.key+" height: "+node.height+" count: "+node.count);
+        inorder(node.left,node.key+" left node is : ");
+        inorder(node.right,node.key+" right node is : ");
+    }
+
+    public Boolean isBalanced(){
+        return isBalanced(root);
+    }
+
+    private Boolean isBalanced(Node node) {
+        if(node == null) return true;
+        return Math.abs(height(node.left) - height(node.right)) <= 1 && isBalanced(node.left) && isBalanced(node.right) ;
+    }
+
+    public void deleteMin() {
+        root=deleteMin(root);
+    }
+
+    private Node deleteMin(Node node) {
+        if(node.left == null) return node.right;
+        node.left=deleteMin(node.left);
+        setHeightNdCount(node);
+        return node;
+    }
+
+    public void delete(Key key) {
+        root=delete(root,key);
+    }
+
+    private Node delete(Node node, Key key) {
+        if(node == null ) return node;
+        int comp=key.compareTo(node.key);
+        if(comp < 0) node.left=delete(node.left,key);
+        else if(comp > 0) node.right=delete(node.right,key);
+        else{
+            if(node.left == null ) return node.right;
+            else if(node.right == null) return node.left;
+
+            Node temp=node;
+            node=min(temp.right);
+            node.right=deleteMin(temp.right);
+            node.left=temp.left;
+            setHeightNdCount(node);
         }
-        return Math.abs(height(node.left) - height(node.right)) <= 1 && balanced(node.left) && balanced(node.right);
+        return checkIsBalanced(node);
+    }
+
+    private Node min(Node temp){
+        while(temp.left != null){
+            temp = temp.left;
+        }
+        return temp;
+    }
+
+    private class Node{
+        Key key;
+        Node left,right;
+        Integer count;
+        Integer height;
+        public Node(Key key) {
+            this.key = key;
+            this.height=0;
+            this.count=1;
+        }
     }
 
 }

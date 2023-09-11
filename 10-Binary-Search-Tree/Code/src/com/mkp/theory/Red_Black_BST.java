@@ -8,12 +8,11 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
     private static final boolean RED=true;
     private static final boolean BLACK=false;
 
-    Node root;
+    private Node root;
 
     public Integer size(){
         return size(root);
     }
-
     private Integer size(Node root) {
         return root != null && root.count != null ? root.count : 0 ;
     }
@@ -45,10 +44,10 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
     }
 
     private void setHeightNdSize(Node h,Node temp){
-        temp.count=1+size(temp.left)+size(temp.right);
-        h.count=1+size(h.left)+size(h.right);
-        temp.height=1+Math.max(height(temp.left),height(temp.right));
-        h.height=1+Math.max(height(h.left),height(h.right));
+            h.count=1+size(h.left)+size(h.right);
+            h.height=1+Math.max(height(h.left),height(h.right));
+            temp.count=1+size(temp.left)+size(temp.right);
+            temp.height=1+Math.max(height(temp.left),height(temp.right));
     }
 
 
@@ -67,6 +66,7 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
         if(tempRoot==null) {
             Node newNode=new Node(key,value,RED);
             newNode.count=1;
+            newNode.height=0;
             return newNode;
         }
         int comp=key.compareTo(tempRoot.key);
@@ -189,6 +189,42 @@ public class Red_Black_BST<Key extends Comparable<Key>, Value> {
         inorder(root.left,q);
         q.add(root.key);
         inorder(root.right,q);
+    }
+
+    public void deleteMin() {
+        this.root=deleteMin(this.root);
+    }
+
+    private Node deleteMin(Node node) {
+        if(node.left==null) return node.right;
+        node.left=deleteMin(node.left);
+        node.count=1+size(node.left)+size(node.right);
+        node.height=1+Math.max(height(node.left),height(node.right));
+        return node;
+    }
+
+    public void delete(Key key) {
+        root=delete(root,key);
+    }
+
+    private Node delete(Node node, Key key) {
+        if(node == null) return null;
+        int comp=key.compareTo(node.key);
+        if(comp > 0) node.right=delete(node.right,key);
+        else if(comp < 0) node.left=delete(node.left,key);
+        else{
+            if(node.left == null) return node.right;
+            else if(node.right == null) return node.left;
+
+            Node temp=node;
+            node=min(temp.right);
+            node.right=deleteMin(temp.right);
+            node.left=temp.left;
+
+        }
+        node.count=1+size(node.left)+size(node.right);
+        node.height=1+Math.max(height(node.left),height(node.right));
+        return node;
     }
 
     private class Node{

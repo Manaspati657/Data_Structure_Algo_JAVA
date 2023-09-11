@@ -50,7 +50,8 @@ public class MainTest2 {
         System.out.println("is Balanced: "+bst.isBalanced()); //false
         bst.display();*/
 
-//       Red black bst - Self balanced in any case it will perform all the curd operation in O(logn) time .
+//       Red black bst - Self balanced (with an extra space for boolean value) in any case it will perform all the curd operation in O(logn) time .
+/*
 //        Red_Black_BST<Integer,String> bst=new Red_Black_BST<>();
 //        bst.insert(15,"manas");
 //        bst.insert(9,"abc");
@@ -58,6 +59,7 @@ public class MainTest2 {
 //        bst.insert(13,"mno");
 //        bst.insert(11,"utg");
 //        System.out.println("size: "+bst.size());
+//        System.out.println("height: "+bst.height());
 //        System.out.println("is Balanced: "+bst.isBalanced()); //true
 //        bst.display();
 //        System.out.println("key value: "+bst.getValue(13));
@@ -68,9 +70,14 @@ public class MainTest2 {
 //        System.out.println("size : "+bst.size());
 //        System.out.println(bst.getAllKeys());
 //        bst.deleteMin();
-//        bst.delete(7);
 //        System.out.println(bst.getAllKeys());
-//        System.out.println("length : "+bst.size());
+//        System.out.println("size: "+bst.size());
+//        System.out.println("height: "+bst.height());
+////        bst.display();
+//        bst.delete(12);
+//        System.out.println(bst.getAllKeys());
+//        System.out.println("size: "+bst.size());
+//        System.out.println("height: "+bst.height());
 
 
 //        Red_Black_BST<Integer,String> bst1=new Red_Black_BST<>();
@@ -85,23 +92,38 @@ public class MainTest2 {
 //        System.out.println("is Balanced: "+bst.isBalanced()); //true
 //        bst.display();
 
-        Red_Black_BST<Integer,String> bst=new Red_Black_BST<>();
-        for (int i = 1; i <=100; i++) {
-            bst.insert(i,"xyz");
-        }
-        System.out.println("size: "+bst.size());
-        System.out.println("Height: "+bst.height());
-        System.out.println("is Balanced: "+bst.isBalanced());
-//        bst.display();
+//        Red_Black_BST<Integer,String> bst=new Red_Black_BST<>();
+//        for (int i = 1; i <=100; i++) {
+//            bst.insert(i,"xyz");
+//        }
+//        System.out.println("size: "+bst.size());
+//        System.out.println("Height: "+bst.height());
+//        System.out.println("is Balanced: "+bst.isBalanced());
+//        bst.display();*/
 
 
-//        AVL tree = new AVL();
-//
-//        for(int i=0; i < 100; i++) {
+//     AVL tree -self balanced without any extra space
+//        AVL<Integer> tree = new AVL<>();
+        AVL<Integer> tree = new AVL<>(new Integer[]{15,33,44,56,75,45,75,34});
+//        for (int i = 1000; i > 0 ; i--) {
 //            tree.insert(i);
 //        }
-//
+
+//        tree.deleteMin();
+        tree.delete(45);
+        tree.delete(56);
+        tree.delete(75);
+//        tree.delete(676);
+        System.out.println(tree.height());
+        System.out.println(tree.count());
+//        tree.display();
+        System.out.println(tree.isBalanced());
+
+//        AVL_kunal tree = new AVL_kunal();
+//        tree.populate(new int[]{15,33,44,56,75,45,75,34});
+//        System.out.println(tree.balanced());
 //        System.out.println(tree.height());
 //        tree.display();
+
     }
 }
