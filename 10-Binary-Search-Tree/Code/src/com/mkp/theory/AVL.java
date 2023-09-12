@@ -1,6 +1,8 @@
 package src.com.mkp.theory;
 
-class AVL<Key extends Comparable<Key>>{
+import java.util.*;
+
+public class AVL<Key extends Comparable<Key>>{
     private Node root;
     public AVL() {
     }
@@ -227,6 +229,184 @@ class AVL<Key extends Comparable<Key>>{
         }
         return temp;
     }
+
+    public void traverseBFS() {
+        traverseBFS(root);
+    }
+
+    private void traverseBFS(Node node) {
+        if(node== null) return;
+        Queue<Node> queue=new LinkedList<>();
+        queue.add(node);
+        while(!queue.isEmpty()){
+            int size=queue.size();
+            for (int i = 0; i < size; i++) {
+//              remove current node .
+                Node tempNode=queue.poll();
+                System.out.print(tempNode.key+" ");
+//              add current node children to the queue if exit.
+                if(tempNode.left != null) queue.add(tempNode.left);
+                if(tempNode.right != null) queue.add(tempNode.right);
+            }
+            System.out.println();
+        }
+    }
+
+    public List<List<Key>> levelOrder(){
+        return levelOrder(root);
+    }
+
+//    https://leetcode.com/problems/binary-tree-level-order-traversal/description/
+    private List<List<Key>> levelOrder(Node root) {
+        List<List<Key>> ans=new ArrayList<>();
+        if(root == null) return ans;
+        Queue<Node> queue=new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            List<Key> levelData=new ArrayList<>();
+            int size=queue.size();
+            for(int i=0;i<size;i++){
+                Node tempNode=queue.poll();
+                levelData.add(tempNode.key);
+                if(tempNode.left != null) queue.add(tempNode.left);
+                if(tempNode.right != null) queue.add(tempNode.right);
+            }
+            ans.add(levelData);
+        }
+        return ans;
+    }
+
+    public List<List<Key>> levelOrderII(){
+        return levelOrderII(root);
+    }
+
+//        https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/
+    private List<List<Key>> levelOrderII(Node root) {
+        List<List<Key>> ans=new ArrayList<>();
+        if(root == null) return ans;
+        Queue<Node> queue=new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            List<Key> levelData=new ArrayList<>();
+            int size=queue.size();
+            for(int i=0;i<size;i++){
+                Node tempNode=queue.poll();
+                levelData.add(tempNode.key);
+                if(tempNode.left != null) queue.add(tempNode.left);
+                if(tempNode.right != null) queue.add(tempNode.right);
+            }
+            ans.add(0,levelData);
+        }
+        return ans;
+    }
+
+    public List<Double> averageOfLevels(){
+        return averageOfLevels(root);
+    }
+
+//    https://leetcode.com/problems/average-of-levels-in-binary-tree/description/
+    private List<Double> averageOfLevels(Node node) {
+        List<Double> ans=new ArrayList<>();
+        if(node == null ) return ans;
+        Queue<Node> queue=new LinkedList<>();
+        queue.add(node);
+        while(!queue.isEmpty()){
+            int size=queue.size();
+            Double levelSum=0.0;
+            for (int i = 0; i < size; i++) {
+                Node tempNode=queue.poll();
+                levelSum+=(Double) tempNode.key;
+                if(tempNode.left != null) queue.add(tempNode.left);
+                if(tempNode.right != null) queue.add(tempNode.right);
+            }
+            ans.add(levelSum/size);
+        }
+
+        return ans;
+    }
+
+    public List<List<Key>> zigzagLevelOrder(){
+        return zigzagLevelOrder(root);
+    }
+
+//        https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+    private List<List<Key>> zigzagLevelOrder(Node node) {
+        List<List<Key>> ans=new ArrayList<>();
+        if(node == null) return ans;
+        Deque<Node> deque=new LinkedList<>();
+        deque.addLast(node);
+        boolean rev=false;
+
+        while(!deque.isEmpty()){
+            int size=deque.size();
+            List<Key> levelAns=new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                if(rev){
+                    Node tempNode=deque.pollLast();
+                    levelAns.add(tempNode.key);
+                    if(tempNode.right != null) deque.addFirst(tempNode.right);
+                    if(tempNode.left != null) deque.addFirst(tempNode.left);
+                }else{
+                    Node tempNode=deque.pollFirst();
+                    levelAns.add(tempNode.key);
+                    if(tempNode.left != null) deque.addLast(tempNode.left);
+                    if(tempNode.right != null) deque.addLast(tempNode.right);
+                }
+            }
+            rev=!rev;
+            ans.add(levelAns);
+        }
+        return ans;
+    }
+
+    public void iterateLevel(){
+        iterateLevel(root);;
+    }
+
+//        https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+    private void iterateLevel(Node node) {
+//        if(root==null) return root;
+        Queue<Node> queue=new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int size=queue.size();
+            for(int i = 0;i < size ;i++){
+                Node temp=queue.poll();
+                Node next=queue.peek();
+//                if(i == size-1) temp.next=null;
+//                else temp.next=queue.peek();
+                if(temp.left != null) queue.add(temp.left);
+                if(temp.right != null) queue.add(temp.right);
+            }
+        }
+//        return root;
+    }
+
+    public List<Key> rightSideView() {
+        return rightSideView(root);
+    }
+
+//        https://leetcode.com/problems/binary-tree-right-side-view/
+    private List<Key> rightSideView(Node node) {
+        List<Key> ans=new ArrayList<>();
+        if(node == null) return ans;
+
+        Queue<Node> q=new LinkedList<>();
+        q.add(node);
+        while(!q.isEmpty()){
+            int size= q.size();
+            for (int i = 0; i < size; i++) {
+                Node temp=q.poll();
+                if(i == size-1) ans.add(temp.key);
+                if(temp.left != null) q.add(temp.left);
+                if(temp.right != null) q.add(temp.right);
+            }
+        }
+        return ans;
+    }
+
+
+
 
     private class Node{
         Key key;
