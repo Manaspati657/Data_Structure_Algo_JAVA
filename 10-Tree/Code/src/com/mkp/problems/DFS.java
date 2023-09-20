@@ -54,8 +54,21 @@ public class DFS {
 //        System.out.println(tree.hasPathSum(22));
 
 //        https://leetcode.com/problems/sum-root-to-leaf-numbers/
-        System.out.println(tree.sumAllPathNumbers());
+//        System.out.println(tree.sumAllPathNumbers());
+
+//    https://leetcode.com/problems/binary-tree-maximum-path-sum/
+//        System.out.println(tree.maxPathSum());
+
+        //https://leetcode.com/problems/binary-tree-paths/
+//        System.out.println(tree.binaryTreePaths());
+
+//        https://leetcode.com/problems/symmetric-tree/
+//        using stack
+//        System.out.println(tree.isSymmetric());
+//        using recursion
+        System.out.println(tree.isSymmetric2());
     }
+
 }
 
 

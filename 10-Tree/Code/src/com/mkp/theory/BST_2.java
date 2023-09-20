@@ -307,9 +307,85 @@ public class BST_2<Key extends Comparable<Key>> {
 
     }
 
+    private int max=Integer.MIN_VALUE;
+    public int maxPathSum(){
+        maxPathSum(root);
+        return max;
+    }
 
+//    https://leetcode.com/problems/binary-tree-maximum-path-sum/
+    private int maxPathSum(Node node) {
+        if(node==null) return 0;
 
+        int left=maxPathSum(node.left);
+        int right=maxPathSum(node.right);
 
+        left=Math.max(0,left);
+        right=Math.max(0,right);
+
+        int pathsum=left+right+(Integer) node.key;
+
+        max=Math.max(ans,pathsum);
+        return Math.max(left,right)+(Integer) node.key;
+    }
+
+    public List<String> binaryTreePaths() {
+        return binaryTreePaths(root);
+    }
+
+//https://leetcode.com/problems/binary-tree-paths/
+    public List<String> binaryTreePaths(Node root) {
+        List<String> ans=new ArrayList<>();
+        if(root!=null) helper(root,ans,"");
+        return ans;
+    }
+    private void helper(Node root,List<String> ans,String str){
+        if(root.left == null && root.right == null) ans.add(str+root.key);
+        if(root.left != null) helper(root.left,ans,str+root.key+"->");
+        if(root.right != null) helper(root.right,ans,str+root.key+"->");
+    }
+
+    public boolean isSymmetric(){
+        return isSymmetric(root);
+    }
+
+//    https://leetcode.com/problems/symmetric-tree/
+    private boolean isSymmetric(Node root) {
+        if(root == null) return true;
+
+        Stack<Node> list=new Stack<>();
+        list.add(root.left);
+        list.add(root.right);
+        while(!list.isEmpty()){
+            Node node1=list.pop();
+            Node node2=list.pop();
+
+            if(node1 == null && node2 == null) continue;
+
+            if(node1 == null || node2== null) return false;
+
+            if(!node1.key.equals(node2.key)) return false;
+            list.add(node1.left);
+            list.add(node2.right);
+            list.add(node1.right);
+            list.add(node2.left);
+
+        }
+
+        return true;
+    }
+
+    public boolean isSymmetric2() {
+        if(root == null) return true;
+        return isSymmetric2(root.left,root.right);
+    }
+
+    private boolean isSymmetric2(Node left,Node right){
+        if(left== null && right == null ) return true;
+        else if(left == null || right== null ) return false;
+        else if(!left.key.equals(right.key)) return false;
+        return isSymmetric2(left.left,right.right) && isSymmetric2(left.right,right.left);
+    }
 
     private class Node{
         Key key;
