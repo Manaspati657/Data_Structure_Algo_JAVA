@@ -15,6 +15,7 @@
       <sourceFolder url="file://$MODULE_DIR$/08-Search/Code" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/09-Priority-Queue/Code" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/10-Tree/Code" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11-Graph/Code" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/02-Patterns/Code/src/patternEx" />
     </content>
     <orderEntry type="inheritedJdk" />
