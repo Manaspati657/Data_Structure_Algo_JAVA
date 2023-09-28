@@ -6,11 +6,13 @@ import java.util.*;
 
 public class KruskalsMST {
 
+//    Space Complexity: O(E)
     private Queue<Edge> mst=new LinkedList<>();
 
     private double totalWeight;
-
+//    Space Complexity: O(V)
     private int[] vertices;
+//    Space Complexity: O(V)
     private int[] ranks;
 
     public KruskalsMST(EdgeWeightedGraph graph) {

@@ -47,10 +47,25 @@ public class Main_MST {
             graph.addEdge(e);
         }
 
-//        Kruskal's Algorithm : time complexity - O (V + E logE + V log E +V log V) --> O(E log E)
-         KruskalsMST mst=new KruskalsMST(graph);
+//        Kruskal's Algorithm :
+        /*
+        Time complexity - O (V + E logE + V log E +V log V) --> O(E log E)
+        Space complexity - O (V + V+ E) --> O(2V + E) --> O(V+E)
+        */
+         /*KruskalsMST mst=new KruskalsMST(graph);
          Iterable<Edge> ans=mst.mst();
          ans.forEach(System.out::println);
-         System.out.println(mst.weight());
+         System.out.println(mst.weight());*/
+
+//         Prim's Algorith :
+        /*
+        Time complexity - O (E logE + V log E ) --> O(E log E)
+        Space complexity - O (V + E) --> O(V + E)
+        */
+        PrimsMST mst=new PrimsMST(graph);
+        Iterable<Edge> ans=mst.mst();
+        ans.forEach(System.out::println);
+        System.out.println(mst.weight());
+
     }
 }
