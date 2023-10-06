@@ -1,4 +1,4 @@
-package src.com.mkp.theory.MinimumSpanningTree;
+package src.com.mkp.theory.UnDirectedEWG;
 
 public class Edge implements Comparable<Edge> {
 

@@ -1,10 +1,9 @@
-package src.com.mkp.theory.MinimumSpanningTree;
+package src.com.mkp.theory.UnDirectedEWG;
 
 import java.util.ArrayList;
-import java.util.Queue;
 import java.util.Scanner;
 
-public class Main_MST {
+public class Main_EWG {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter no of Vertices:: ");
@@ -12,7 +11,8 @@ public class Main_MST {
         EdgeWeightedGraph graph = new EdgeWeightedGraph(v);
 //        System.out.println("Give all connection vertices:: ");
         ArrayList<Edge> listConn=new ArrayList<>();
-        listConn.add(new Edge(1,3,0.29));
+//        for finding MST
+        /*listConn.add(new Edge(1,3,0.29));
         listConn.add(new Edge(1,5,0.32));
         listConn.add(new Edge(2,7,0.34));
         listConn.add(new Edge(4,5,0.35));
@@ -27,7 +27,26 @@ public class Main_MST {
         listConn.add(new Edge(5,7,0.28));
         listConn.add(new Edge(3,6,0.52));
         listConn.add(new Edge(6,0,0.58));
-        listConn.add(new Edge(6,4,0.93));
+        listConn.add(new Edge(6,4,0.93));*/
+//        for finding SPT
+        /*listConn.add(new Edge(0,3,2));
+        listConn.add(new Edge(0,4,3));
+        listConn.add(new Edge(3,5,6));
+        listConn.add(new Edge(3,2,4));
+        listConn.add(new Edge(4,2,5));
+        listConn.add(new Edge(2,1,2));
+        listConn.add(new Edge(1,5,1));*/
+//        for finding SPT
+        listConn.add(new Edge(0,1,2));
+        listConn.add(new Edge(0,2,6));
+        listConn.add(new Edge(1,3,5));
+        listConn.add(new Edge(2,3,8));
+        listConn.add(new Edge(3,5,15));
+        listConn.add(new Edge(3,4,10));
+        listConn.add(new Edge(5,4,6));
+        listConn.add(new Edge(5,6,6));
+        listConn.add(new Edge(4,6,2));
+
 
 //        option 1: change the connection at run time
         /*for (int i = 0; i < v; i++) {
@@ -47,25 +66,32 @@ public class Main_MST {
             graph.addEdge(e);
         }
 
-//        Kruskal's Algorithm :
+//        Kruskal's Algorithm : Minimum Spanning Tree
         /*
         Time complexity - O (V + E logE + V log E +V log V) --> O(E log E)
         Space complexity - O (V + V+ E) --> O(2V + E) --> O(V+E)
         */
-         /*KruskalsMST mst=new KruskalsMST(graph);
+         /* KruskalsMST mst=new KruskalsMST(graph);
          Iterable<Edge> ans=mst.mst();
          ans.forEach(System.out::println);
-         System.out.println(mst.weight());*/
+         System.out.println(mst.weight()); */
 
-//         Prim's Algorith :
+//         Prim's Algorithm : Minimum Spanning Tree
         /*
         Time complexity - O (E logE + V log E ) --> O(E log E)
         Space complexity - O (V + E) --> O(V + E)
         */
-        PrimsMST mst=new PrimsMST(graph);
+        /*PrimsMST mst=new PrimsMST(graph);
         Iterable<Edge> ans=mst.mst();
         ans.forEach(System.out::println);
-        System.out.println(mst.weight());
+        System.out.println(mst.weight());*/
 
+//        Dijkstra Algorithm : Shortest Path Tree
+        /*
+        Time complexity - O( V+ E logE +E logE) --> O(E logE)
+        Space complexity - O( V+ E +E ) -->  O(V+E)
+        */
+        DijkstraSPT spt=new DijkstraSPT(graph);
+        spt.display();
     }
 }

@@ -1,8 +1,7 @@
-package src.com.mkp.theory.directed;
+package src.com.mkp.theory.Directed;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 

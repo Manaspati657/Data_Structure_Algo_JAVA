@@ -1,6 +1,4 @@
-package src.com.mkp.theory.MinimumSpanningTree;
-
-import src.com.mkp.theory.UnionFind;
+package src.com.mkp.theory.UnDirectedEWG;
 
 import java.util.*;
 

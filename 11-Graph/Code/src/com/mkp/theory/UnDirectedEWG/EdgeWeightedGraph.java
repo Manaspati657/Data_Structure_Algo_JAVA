@@ -1,7 +1,6 @@
-package src.com.mkp.theory.MinimumSpanningTree;
+package src.com.mkp.theory.UnDirectedEWG;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class EdgeWeightedGraph {
 

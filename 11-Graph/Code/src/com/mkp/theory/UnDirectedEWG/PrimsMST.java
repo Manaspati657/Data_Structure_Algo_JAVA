@@ -1,4 +1,4 @@
-package src.com.mkp.theory.MinimumSpanningTree;
+package src.com.mkp.theory.UnDirectedEWG;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;

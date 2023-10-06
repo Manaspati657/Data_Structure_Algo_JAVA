@@ -1,7 +1,6 @@
-package src.com.mkp.theory.directed;
+package src.com.mkp.theory.Directed;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class DirectedGraph {
     
