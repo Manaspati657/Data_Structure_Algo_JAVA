@@ -21,9 +21,6 @@ public class KahnsAlgorithm_BFS_TopologicalSort {
         for (int i = 0; i < visited.length; i++) {
             if(visited[i] == 0) q.add(i);
         }
-        for (int i : visited) {
-
-        }
         while(!q.isEmpty()){
             int current=q.poll();
             list.add(current);
