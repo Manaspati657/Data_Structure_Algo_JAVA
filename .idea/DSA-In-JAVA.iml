@@ -17,6 +17,8 @@
       <sourceFolder url="file://$MODULE_DIR$/10-Tree/Code" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/11-Graph/Code" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/12-Disjoint_Set_UnionFind/Code" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/13-Selection-Algorithm/Code" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/14-String-Sorting/Code" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/02-Patterns/Code/src/patternEx" />
     </content>
     <orderEntry type="inheritedJdk" />
