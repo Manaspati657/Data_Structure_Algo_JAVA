@@ -1,6 +1,16 @@
 package src.com.mkp.theory;
 
-public class Tries {
+public class R_way_Tries {
+
+//    R- R is either All ascii value or any range of ascii value.
+
+/*
+*    Time complexity for put: O(L) - L is length of the string;
+*                        Search: O(log R of L )
+*    Space complexity : (R+L)N ( in space complexity it gives worst case because it has so many of null entry).
+*
+* */
+
 
 //    private static final int R=26;
     private static final int R=256;  // 256 for all ASCII character.
