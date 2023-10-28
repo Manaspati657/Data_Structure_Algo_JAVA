@@ -1,4 +1,4 @@
-package src.com.mkp.theory;
+package src.com.mkp.Tries_String_DS;
 
 public class MainTries {
     public static void main(String[] args) {

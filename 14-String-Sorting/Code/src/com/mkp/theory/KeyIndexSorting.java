@@ -7,7 +7,7 @@ public class KeyIndexSorting {
     public static void main(String[] args) {
         int[] arr={4,3,1,2,7,8,0,4,2,3,2};
         System.out.println(Arrays.toString(arr));
-        countingSort2(arr);
+        countingSort(arr);
         System.out.println(Arrays.toString(arr));
 
     }
@@ -25,8 +25,9 @@ public class KeyIndexSorting {
         for (int i = 1; i < R; i++) {
             count[i]+=count[i-1];
         }
-        System.out.println(Arrays.toString(count));
-        for (int i = 0; i < N; i++) {
+//        System.out.println(Arrays.toString(count));
+//        run reverse for stable ans
+        for (int i = N-1; i >= 0; i--) {
             aux[count[arr[i]]-1]=arr[i];
             count[arr[i]]--;
         }

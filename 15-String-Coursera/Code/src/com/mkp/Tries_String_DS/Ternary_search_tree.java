@@ -1,4 +1,4 @@
-package src.com.mkp.theory;
+package src.com.mkp.Tries_String_DS;
 
 public class Ternary_search_tree {
 
