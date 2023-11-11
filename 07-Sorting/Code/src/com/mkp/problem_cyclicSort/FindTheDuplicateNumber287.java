@@ -2,6 +2,7 @@ package src.com.mkp.problem_cyclicSort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class FindTheDuplicateNumber287 {
@@ -13,7 +14,30 @@ public class FindTheDuplicateNumber287 {
         System.out.println(Arrays.toString(nums));
     }
 
+    // using hasmap we can store the count and iterate through
+    //  the map check the count if more than 1 then return
+    // Time Complexity: for building hashmap : O(N)
+    //                  for checking the count : O(N)
+    // O(N+N) = O(N)
     public static int findDuplicate(int[] nums) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+
+        for(int i =0;i<nums.length;i++){
+            if(map.containsKey(nums[i])){
+                map.put(nums[i],map.get(nums[i])+1);
+            }else{
+                map.put(nums[i],1);
+            }
+        }
+
+        for(int i =0;i<nums.length;i++){
+            if(map.get(nums[i]) > 1) return nums[i];
+        }
+
+        return -1;
+    }
+
+    public static int findDuplicate2(int[] nums) {
 
         int i =0 ;
         while (i < nums.length){

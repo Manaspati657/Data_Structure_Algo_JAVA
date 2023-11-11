@@ -21,6 +21,7 @@
       <sourceFolder url="file://$MODULE_DIR$/14-String-Sorting/Code" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/15-String-Coursera/Code" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/16-Data-Compression/Code" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/17-Hashing/Code" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/02-Patterns/Code/src/patternEx" />
     </content>
     <orderEntry type="inheritedJdk" />
