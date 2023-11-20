@@ -1,4 +1,4 @@
-package src.com.mkp.problem;
+package src.com.mkp.knapsack_01;
 
 import java.util.Arrays;
 
@@ -9,7 +9,7 @@ public class knapsack_01_memoization {
 *   Dp is basically Recursion + memoization
 *
 *   knapsack 01 - knapsack means bag and 0 1 means either we take it (1) or
-*   don't  take it(0)
+*   don't take it(0)
 *
 *   In memoization concept we have store the previous tree answer in
 *   a temp area use it in future recursion call.
@@ -29,18 +29,18 @@ public class knapsack_01_memoization {
     private static int computeMaxProfit(int[] wt, int[] profit, int w, int n) {
 
         int[][] dp=new int[n+1][w+1];
-        for (int i = 0; i <w+1; i++) {
-            for (int j = 0; j <n+1; j++) {
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= w; j++) {
                 dp[i][j]=-1;
             }
         }
         int ans= helper(wt,profit,w,n,dp);
-        System.out.println(Arrays.deepToString(dp));
+//        System.out.println(Arrays.deepToString(dp));
         return ans;
     }
 
     private static int helper(int[] wt, int[] profit, int w, int n,int[][] dp) {
-        System.out.println(n+" n -- w "+(w));
+//        System.out.println(n+" n -- w "+(w));
 //        base condition - if n =0 or weight is 0 then max profit will be 0
         if(n==0 || w==0) return 0;
 

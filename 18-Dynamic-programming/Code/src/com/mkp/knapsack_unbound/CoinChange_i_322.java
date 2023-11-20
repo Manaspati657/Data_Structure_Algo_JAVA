@@ -1,8 +1,8 @@
-package src.com.mkp.problem;
+package src.com.mkp.knapsack_unbound;
 
 import java.util.HashMap;
 
-public class CoinChange322 {
+public class CoinChange_i_322 {
     public static void main(String[] args) {
 //        int coins[] = {1,2,5}, amount = 11;
 //        int coins[] = {1,7,5}, amount = 18;

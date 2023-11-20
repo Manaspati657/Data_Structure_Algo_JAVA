@@ -1,4 +1,4 @@
-package src.com.mkp.problem;
+package src.com.mkp.knapsack_01;
 
 public class PartitionEqualSubsetSum416 {
 
