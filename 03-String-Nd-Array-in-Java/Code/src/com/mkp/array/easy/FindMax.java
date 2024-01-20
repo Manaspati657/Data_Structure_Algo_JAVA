@@ -1,4 +1,4 @@
-package src.com.mkp.array;
+package src.com.mkp.array.easy;
 
 public class FindMax {
     public static void main(String[] args) {

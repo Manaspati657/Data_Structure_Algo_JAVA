@@ -1,4 +1,4 @@
-package src.com.mkp.array;
+package src.com.mkp.array.medium;
 
 import java.util.Arrays;
 

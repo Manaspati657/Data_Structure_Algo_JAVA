@@ -1,4 +1,4 @@
-package src.com.mkp.string;
+package src.com.mkp.string.v1;
 
 public class AtoZSeries {
     public static void main(String[] args) {
