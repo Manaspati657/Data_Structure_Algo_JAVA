@@ -28,6 +28,7 @@ public class NumberOfGoodPairs1512 {
             Integer count=map.get(no);
             ans+=(count*(count-1))/2;
         }
+        
         return ans;
     }
 

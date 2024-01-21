@@ -6,7 +6,7 @@ import java.util.Map;
 public class CheckIfTheSentenceIsPangram1832 {
 
     public static void main(String[] args) {
-        String  sentence = "thequickbrownfoxjumpsoverthelazydog";
+        String sentence = "thequickbrownfoxjumpsoverthelazydog";
         System.out.println(checkIfPangram(sentence));
     }
 
