@@ -21,7 +21,7 @@ public class ReverseLinkedListWithRecursion {
         reverse(head);
     }
 
-//    reverse with and firsta and last node
+//    reverse with and first and last node
     public static void reverse(Node node){
         if(node.next == null){
             head=node;
