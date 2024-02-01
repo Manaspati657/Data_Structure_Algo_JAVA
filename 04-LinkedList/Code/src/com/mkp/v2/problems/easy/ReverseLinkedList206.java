@@ -5,6 +5,22 @@ import java.util.List;
 
 public class ReverseLinkedList206 {
 
+//  recursion approach
+    public ListNode reverseListV3(ListNode head) {
+        if(head == null || head.next == null) return head;
+//    Basically the approach is go to last and return the last node
+        ListNode ans=reverseListV3(head.next);
+        // while returning we just modify the node link
+        // e.g. 1 -> 2 -> 3 -> 4  when we return last node the in that time we are in node 3 so
+        // we just connect 4 -> 3  head.next.next = head => head.next(is 4).next = head(3) and
+        // then just current node next to null
+        head.next.next=head;
+        head.next=null;
+
+        return ans;
+    }
+
+//   3 pointers approach
     public ListNode reverseListV2(ListNode head) {
         if(head == null) return head;
         ListNode prev=null,current=head,next=null;
