@@ -22,13 +22,16 @@ public class ReverseLinkedList206 {
 
 //   3 pointers approach
     public ListNode reverseListV2(ListNode head) {
-        if(head == null) return head;
-        ListNode prev=null,current=head,next=null;
-        while(current != null){
-            next=current.next;
-            current.next=prev;
-            prev=current;
-            current=next;
+        ListNode prev=null,curr=head;
+        while(curr != null){
+            // first we store curr next node for future current
+            ListNode next=curr.next;
+            // we set the curr next to prev because we have to reverse the order
+            curr.next=prev;
+            // then we move the prev to curr
+            prev = curr;
+            // and last we move the curr to next we store first
+            curr=next;
         }
         return prev;
     }
