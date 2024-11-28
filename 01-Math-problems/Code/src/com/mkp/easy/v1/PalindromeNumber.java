@@ -1,4 +1,4 @@
-package src.com.mkp.easy;
+package src.com.mkp.easy.v1;
 
 public class PalindromeNumber {
 
@@ -11,8 +11,8 @@ public class PalindromeNumber {
         else {
             int temp = no , rev =0,rem;
             while (no >0){
-                rem=no %10;
-                rev=rev*10+rem;
+                rem= no % 10;
+                rev= rev * 10 + rem;
                 no/=10;
             }
             if(temp==rev) return true;

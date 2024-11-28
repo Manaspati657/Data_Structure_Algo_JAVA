@@ -1,4 +1,4 @@
-package src.com.mkp.easy;
+package src.com.mkp.easy.v1;
 
 public class FibonacciNthNumber {
 
